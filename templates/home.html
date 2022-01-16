@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Q and A</title>
+</head>
+<body>
+	{% if user.is_authenticated %}
+		Hello,{{user.username}}
+		<a href="/accounts/logout"><button>logout</button></a>
+	{% else %}
+		<a href="/accounts/register"><button>register</button></a>
+		<a href="/accounts/login"><button>login</button></a>
+	{% endif %}
+	{%if latest_questions%}
+		<ol>
+			{% for question in latest_questions%}
+				<li><a href="/{{question.id}}"> {{question.question_text}}</a></li>
+			{% endfor %}
+		</ol>
+	{% else %}
+		<p> no Questions are available <p>
+	{% endif %}
+</body>
+</html>
